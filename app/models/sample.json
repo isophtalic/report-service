@@ -1,0 +1,305 @@
+{
+  "type": "daily|weekly|monthly|yearly",
+  "organization": {
+    "name": "dev",
+    "address": "Hanoi",
+    "execution_time": {
+      "start": 123456,
+      "end": 12345456
+    }
+  },
+  "permission": [],
+  "overview": {
+    "overview": {
+      "risk": {
+        "total": 1,
+        "destiny": "15%"
+      },
+      "dl-credential": {
+        "total": 1,
+        "destiny": "15%"
+      },
+      "dl-credit-card": {
+        "total": 1,
+        "destiny": "15%"
+      },
+      "dl-document": {
+        "total": 1,
+        "destiny": "15%"
+      },
+      "brand-abuse": {
+        "total": 1,
+        "destiny": "15%"
+      },
+      "investigate": {
+        "total": 1,
+        "destiny": "15%"
+      },
+      "campaign-botnet": {
+        "total": 1,
+        "destiny": "15%"
+      },
+      "campaign-campaign": {
+        "total": 1,
+        "destiny": "15%"
+      },
+      "open-port": {
+        "total": 1,
+        "destiny": "15%"
+      }
+    },
+    "chart": {
+      "dl-credential": {
+        "domain": [
+          {
+            "value": "domain-test.com",
+            "count": 123
+          },
+          {
+            "value": "domain-test1.com",
+            "count": 123
+          },
+          {
+            "value": "domain-test2.com",
+            "count": 123
+          },
+          {
+            "value": "domain-test3.com",
+            "count": 123
+          },
+          {
+            "value": "domain-test4.com",
+            "count": 123
+          }
+        ],
+        "account": [
+          {
+            "value": "account.com",
+            "count": 123
+          },
+          {
+            "value": "account1.com",
+            "count": 123
+          },
+          {
+            "value": "account2.com",
+            "count": 123
+          },
+          {
+            "value": "account3.com",
+            "count": 123
+          },
+          {
+            "value": "account4.com",
+            "count": 123
+          }
+        ]
+      },
+      "vulnerability": {
+        "critical": 3,
+        "high": 3,
+        "medium": 3,
+        "low": 3,
+        "info": 3
+      },
+      "dl-document": [
+        {
+          "file": "docx1",
+          "count": 123
+        },
+        {
+          "file": "docx2",
+          "count": 123
+        },
+        {
+          "file": "docx3",
+          "count": 123
+        },
+        {
+          "file": "docx4",
+          "count": 123
+        },
+        {
+          "file": "docx5",
+          "count": 123
+        }
+      ]
+    }
+  },
+  "appendix": {
+    "asset": {
+      "domain-ip": [
+        {
+          "group": "ten gi do",
+          "assets": [
+            {
+              "value": "domain-test.com",
+              "description": "description"
+            },
+            {
+              "value": "domain-test.com",
+              "description": "description"
+            }
+          ]
+        },
+        {
+          "group": "ten gi do",
+          "assets": [
+            {
+              "value": "domain-test.com",
+              "description": "description"
+            },
+            {
+              "value": "domain-test.com",
+              "description": "description"
+            }
+          ]
+        }
+      ],
+      "products": [
+        {
+          "value": "product1",
+          "description": "description"
+        }
+      ],
+      "identify": [
+        {
+          "value": "product1",
+          "description": "description"
+        }
+      ]
+    },
+    "open-port": [
+      {
+        "ip": "1.1.1.1",
+        "port": 2000,
+        "service": "ftp",
+        "version": "123"
+      }
+    ],
+    "vulnerability": {
+      "va": [
+        {
+          "asset": {
+            "host": "1.1.1.1",
+            "risks": [
+              {
+                "name": "CVE-2020-2020",
+                "severity": "critical",
+                "description": "description",
+                "recommendation": "update to version 1.0.1"
+              }
+            ]
+          }
+        }
+      ],
+      "cve": [
+        {
+          "product": {
+            "name": "dev",
+            "cves": [
+              {
+                "name": "CVE-2020-2020",
+                "severity": "critical",
+                "description": "description",
+                "recommendation": "update to version 1.0.1"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "dl-credential": [
+      {
+        "path": "path/to/credential1",
+        "username": "username1",
+        "password": "password1",
+        "created": 1234567890
+      },
+      {
+        "path": "path/to/credential1",
+        "username": "username1",
+        "password": "password1",
+        "created": 1234567890
+      }
+    ],
+    "dl-credit-card": [
+      {
+        "number": "1234-5678-9012-3456",
+        "expiry": "12/25",
+        "created": 1234567890
+      },
+      {
+        "number": "1234-5678-9012-3456",
+        "expiry": "12/25",
+        "created": 1234567890
+      }
+    ],
+    "dl-document": [
+      {
+        "filename": "file1.docx",
+        "size": 123456,
+        "path": "path/to/file1.docx",
+        "created": 1234567890
+      },
+      {
+        "filename": "file2.docx",
+        "size": 123456,
+        "path": "path/to/file2.docx",
+        "created": 1234567890
+      }
+    ],
+    "brand-abuse": [
+      {
+        "name": "abuse-domain.com",
+        "description": "phishing",
+        "created": 1234567890
+      },
+      {
+        "name": "abuse-domain1.com",
+        "description": "phishing",
+        "created": 1234567890
+      }
+    ],
+    "investigate": [
+      {
+        "domain": "investigate1.com",
+        "status": 1,
+        "created": 1234567890,
+        "completed": 1234567890
+      },
+      {
+        "domain": "investigate2.com",
+        "status": 2,
+        "created": 1234567890,
+        "completed": 1234567890
+      }
+    ],
+    "campaign-botnet": [
+      {
+        "ip": "1.1.1.1",
+        "created": 1234567890,
+        "info": "Botnet detected"
+      },
+      {
+        "ip": "1.1.1.2",
+        "created": 1234567890,
+        "info": "Botnet detected"
+      }
+    ],
+    "campaign-campaign": [
+      {
+        "name": "Campaign 1",
+        "country": "Description of Campaign 1",
+        "sector": "Technology",
+        "created": 1234567890
+      },
+      {
+        "name": "Campaign 2",
+        "country": "Description of Campaign 2",
+        "sector": "Finance",
+        "created": 1234567890
+      }
+    ]
+  }
+}
