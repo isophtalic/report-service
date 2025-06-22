@@ -1,5 +1,5 @@
 from pydantic import BaseModel, model_validator, field_validator
-from typing import Literal, List, Dict
+from typing import Literal, List, Dict, Optional
 from datetime import datetime
 
 from .chart import ChartData
@@ -18,13 +18,13 @@ PermissionType = Literal[
 ]
 
 
-class Destiny(BaseModel):
+class Density(BaseModel):
     total: int
-    destiny: str
+    density: str
 
 
 class OverviewData(BaseModel):
-    overview: Dict[str, Destiny]
+    overview: Dict[str, Density]
     chart: ChartData
 
 
@@ -56,18 +56,23 @@ class Organization(BaseModel):
 class Report(BaseModel):
     type: Literal["daily", "weekly", "monthly", "yearly"]
     organization: Organization
-    permission: List[PermissionType]
-    overview: OverviewData
-    appendix: Appendix
+    permission: Optional[List[PermissionType]]
+    overview: Optional[OverviewData]
+    appendix: Optional[Appendix]
 
-    @field_validator("permission")
-    def check_unique(self, v: List[str]):
-        if len(set(v)) != len(v):
+    @model_validator(mode="after")
+    def check_unique(self):
+        if len(set(self.permission)) != len(self.permission):
             raise ValueError("Duplicate permissions are not allowed")
-        return v
+        return self
 
     @model_validator(mode="after")
     def ensure_key_in_permission(self):
+        if len(self.permission) == 0:
+            self.overview.overview = {}
+            return self
+
+
         filtered = {
             key: value
             for key, value in self.overview.overview.items()
