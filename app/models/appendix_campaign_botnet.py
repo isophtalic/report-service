@@ -5,3 +5,4 @@ class AppendixCampaignBotnet(BaseModel):
     ip: str
     info: str
     created: int
+    received: int

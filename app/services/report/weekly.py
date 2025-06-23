@@ -1,4 +1,4 @@
-from docxtpl import DocxTemplate
+from docxtpl import DocxTemplate, R
 from app.services.report.report import Report
 from app.utils.time import format_timestamp
 from datetime import datetime
@@ -14,17 +14,31 @@ class WeeklyReport(Report):
         self.__docx = docx
 
     def process(self, data: dict) -> dict:
+        data["page_break"] = R("\f")
         data["date_now"] = datetime.now().strftime("%m-%Y")
-        data["organization"]["execution_time"]["start_time"] = format_timestamp(data["organization"]["execution_time"]["start"])
-        data["organization"]["execution_time"]["end_time"] = format_timestamp(data["organization"]["execution_time"]["end"])
+        data["organization"]["execution_time"]["start_time"] = format_timestamp(
+            data["organization"]["execution_time"]["start"])
+        data["organization"]["execution_time"]["end_time"] = format_timestamp(
+            data["organization"]["execution_time"]["end"])
         data["overview"]["overview"]["density"] = overview_overview(self.__docx, data)
-        data["overview"]["chart"]["chart_credential_domain"] = chart_credential(self.__docx, data["overview"]["chart"]["dl_credential"])
+        data["overview"]["chart"]["chart_credential_domain"] = chart_credential(self.__docx, data["overview"]["chart"][
+            "dl_credential"])
+
+        # appendix
+        data["appendix"]["vulnerability"]["heading_cve"] = ""
+        data["appendix"]["vulnerability"]["heading_va"] = ""
+        if data["appendix"]["vulnerability"]["cve"] is not None:
+            data["appendix"]["vulnerability"]["heading_cve"] = "A.CÁC SẢN PHẨM, PHẦN MỀM ỨNG DỤNG"
+        if data["appendix"]["vulnerability"]["va"] is not None:
+            data["appendix"]["vulnerability"]["heading_va"] = "B.CÁC IP/DOMAIN"
+
+        # data["appendix_vul"] = appendix_vul(self.__docx, data)
+        # data["appendix_open_port"] = appendix_vul(self.__docx, data)
         # {{p overview.chart.chart_credential_domain }}
         # {{p overview.chart.chart_credential_account }}
         # {{p overview.chart.chart_vulnerability }}
         # {{p overview.chart.chart_document }}
-        return  data
-
+        return data
 
 
 def overview_overview(docx: DocxTemplate, data: dict) -> list:
@@ -37,6 +51,7 @@ def overview_overview(docx: DocxTemplate, data: dict) -> list:
             list_items.append(overview_item(docx, data["overview"]["overview"][key]))
 
     return list_items
+
 
 def get_name_overview_item(key: str):
     match key:
@@ -69,6 +84,27 @@ def overview_item(docx: DocxTemplate, data: dict):
     return docx.new_subdoc(temp_file_path)
 
 
+def appendix_vul(docx: DocxTemplate, data: dict):
+    temp_file_path = os.path.join(Settings.TemporaryFolder, f"{str(uuid4())}.docx")
+    temp_docx = DocxTemplate(os.path.join(Settings.ComponentDir, "appendix_vul.docx"))
+    if data["appendix"]["vulnerability"]["cve"] is not None:
+        data["appendix"]["vulnerability"]["heading_cve "] = "A.	CÁC SẢN PHẨM, PHẦN MỀM ỨNG DỤNG"
+    if data["appendix"]["vulnerability"]["va"] is not None:
+        data["appendix"]["vulnerability"]["heading_va "] = "B.	CÁC IP/DOMAIN"
+
+    temp_docx.render(data)
+    temp_docx.save(temp_file_path)
+    return docx.new_subdoc(temp_file_path)
+
+
+def appendix_open_port(docx: DocxTemplate, data: dict):
+    temp_file_path = os.path.join(Settings.TemporaryFolder, f"{str(uuid4())}.docx")
+    temp_docx = DocxTemplate(os.path.join(Settings.ComponentDir, "appendix_open_port.docx"))
+    temp_docx.render(data)
+    temp_docx.save(temp_file_path)
+    return docx.new_subdoc(temp_file_path)
+
+
 def chart_credential(docx: DocxTemplate, data: dict):
     xml_template_path = os.path.join(Settings.ComponentDir, "column_chart_credential.xml")
     xml_template_context = None
@@ -90,4 +126,8 @@ def chart_credential(docx: DocxTemplate, data: dict):
     chart_doc.save(chart_file_docx)
 
     return docx.new_subdoc(chart_file_docx)
-
+    # temp_file_path = os.path.join(Settings.TemporaryFolder, f"{str(uuid4())}.docx")
+    # temp_docx = DocxTemplate(os.path.join(Settings.ComponentDir, "column_chart_test.docx"))
+    # temp_docx.render(data)
+    # temp_docx.save(temp_file_path)
+    # return docx.new_subdoc(temp_file_path)

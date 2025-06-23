@@ -8,7 +8,7 @@ router = APIRouter()
 
 @router.post("/gen_report")
 def submit_report(data: Report):
-    generator =  ReportGenerator(Settings.TemplateDir + "/cyradar_template.docx").set_type_report(data.type)
+    generator =  ReportGenerator(Settings.TemplateDir + "/weekly_template.docx").set_type_report(data.type)
     buffer = generator.docx_generate_buffer(data.model_dump())
     return responses.StreamingResponse(
         content=buffer,

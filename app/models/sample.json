@@ -13,39 +13,39 @@
     "overview": {
       "risk": {
         "total": 1,
-        "destiny": "15%"
+        "density": "15%"
       },
       "dl-credential": {
         "total": 1,
-        "destiny": "15%"
+        "density": "15%"
       },
       "dl-credit-card": {
         "total": 1,
-        "destiny": "15%"
+        "density": "15%"
       },
       "dl-document": {
         "total": 1,
-        "destiny": "15%"
+        "density": "15%"
       },
       "brand-abuse": {
         "total": 1,
-        "destiny": "15%"
+        "density": "15%"
       },
       "investigate": {
         "total": 1,
-        "destiny": "15%"
+        "density": "15%"
       },
       "campaign-botnet": {
         "total": 1,
-        "destiny": "15%"
+        "density": "15%"
       },
       "campaign-campaign": {
         "total": 1,
-        "destiny": "15%"
+        "density": "15%"
       },
       "open-port": {
         "total": 1,
-        "destiny": "15%"
+        "density": "15%"
       }
     },
     "chart": {
@@ -104,23 +104,23 @@
       },
       "dl-document": [
         {
-          "file": "docx1",
+          "value": "docx1",
           "count": 123
         },
         {
-          "file": "docx2",
+          "value": "docx2",
           "count": 123
         },
         {
-          "file": "docx3",
+          "value": "docx3",
           "count": 123
         },
         {
-          "file": "docx4",
+          "value": "docx4",
           "count": 123
         },
         {
-          "file": "docx5",
+          "value": "docx5",
           "count": 123
         }
       ]
@@ -226,11 +226,13 @@
     "dl-credit-card": [
       {
         "number": "1234-5678-9012-3456",
+        "holder_name": "thangnx",
         "expiry": "12/25",
         "created": 1234567890
       },
       {
         "number": "1234-5678-9012-3456",
+        "holder_name": "thangnx",
         "expiry": "12/25",
         "created": 1234567890
       }
@@ -279,12 +281,14 @@
       {
         "ip": "1.1.1.1",
         "created": 1234567890,
-        "info": "Botnet detected"
+        "info": "Botnet detected",
+        "received": 1234567890
       },
       {
         "ip": "1.1.1.2",
         "created": 1234567890,
-        "info": "Botnet detected"
+        "info": "Botnet detected",
+        "received": 1234567890
       }
     ],
     "campaign-campaign": [
