@@ -8,7 +8,7 @@ class ValueCountItem(BaseModel):
 
 
 class FileCountItem(BaseModel):
-    file: str
+    value: str
     count: int
 
 

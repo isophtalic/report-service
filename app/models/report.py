@@ -67,7 +67,7 @@ class Report(BaseModel):
         return self
 
     @model_validator(mode="after")
-    def ensure_key_in_permission(self):
+    def ensure_key_overview_in_permission(self):
         if len(self.permission) == 0:
             self.overview.overview = {}
             return self
@@ -79,4 +79,39 @@ class Report(BaseModel):
             if key in self.permission
         }
         self.overview.overview = filtered
+        return self
+
+    @model_validator(mode="after")
+    def ensure_key_appendix_in_permission(self):
+        if len(self.permission) == 0:
+            self.appendix = None
+            return self
+
+        permission = set(self.permission)
+        if "risk" not in permission:
+            self.appendix.vulnerability = None
+
+        if "open-port" not in permission:
+            self.appendix.open_port = None
+
+        if "dl-credential" not in permission:
+            self.appendix.dl_credential = None
+
+        if "dl-credit-card" not in permission:
+            self.appendix.dl_credit_card = None
+
+        if "dl-document" not in permission:
+            self.appendix.dl_document = None
+
+        if "brand-abuse" not in permission:
+            self.appendix.brand_abuse = None
+
+        if "investigate" not in permission:
+            self.appendix.investigate = None
+
+        if "campaign-botnet" not in permission:
+            self.appendix.campaign_botnet = None
+
+        if "campaign-campaign" not in permission:
+            self.appendix.campaign_campaign = None
         return self

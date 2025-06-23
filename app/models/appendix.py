@@ -16,10 +16,10 @@ class Appendix(BaseModel):
     asset: Optional[AppendixAsset]
     open_port: Optional[List[AppendixOpenPort]] = Field(default=None, alias="open-port")
     vulnerability: Optional[AppendixVulnerability]
-    dl_credential: List[AppendixDLCredential] = Field(default=None, alias="dl-credential")
-    dl_credit_card: List[AppendixDLCreditCard] = Field(default=None, alias="dl-credit-card")
-    dl_document: List[AppendixDLDocument] = Field(default=None, alias="dl-document")
-    brand_abuse: List[AppendixBrandAbuse] = Field(default=None, alias="brand-abuse")
-    investigate: List[AppendixInvestigate]
-    campaign_botnet: List[AppendixCampaignBotnet] = Field(default=None, alias="campaign-botnet")
-    campaign_campaign: List[AppendixCampaign] = Field(default=None, alias="campaign-campaign")
+    dl_credential: Optional[List[AppendixDLCredential]] = Field(default=None, alias="dl-credential")
+    dl_credit_card: Optional[List[AppendixDLCreditCard]] = Field(default=None, alias="dl-credit-card")
+    dl_document: Optional[List[AppendixDLDocument]] = Field(default=None, alias="dl-document")
+    brand_abuse: Optional[List[AppendixBrandAbuse]] = Field(default=None, alias="brand-abuse")
+    investigate: Optional[List[AppendixInvestigate]]
+    campaign_botnet: Optional[List[AppendixCampaignBotnet]] = Field(default=None, alias="campaign-botnet")
+    campaign_campaign: Optional[List[AppendixCampaign]] = Field(default=None, alias="campaign-campaign")
